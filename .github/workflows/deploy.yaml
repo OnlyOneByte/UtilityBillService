@@ -28,6 +28,8 @@ jobs:
           # install npm aws items
           npm install -g aws-cdk
           npm install
+      - name: Build CDK with npm
+        run: npm run build
       - name: Configure AWS credentials for deploy account
         uses: aws-actions/configure-aws-credentials@v2
         with:
