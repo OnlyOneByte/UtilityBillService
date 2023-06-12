@@ -14,7 +14,7 @@ GDRIVE_FOLDERS = {
 }
 
 SSM_KEYS = {
-    "GOOGLE_CREDENTIALS" : 'GOOGLE_CREDENTIALS_PARAMETER'
+    "GOOGLE_CREDENTIALS" : 'UtilityBillService-GoogleDriveServiceAccount'
 }
 
 def get_service_account_credentials(credentials_parameter):

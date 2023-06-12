@@ -9,6 +9,7 @@ import { LambdaFunction } from 'aws-cdk-lib/aws-events-targets';
 // import { StringParameter } from 'aws-cdk-lib/aws-ssm';
 
 import lambda = require('aws-cdk-lib/aws-lambda');
+import { Effect, Policy, PolicyStatement } from 'aws-cdk-lib/aws-iam';
 
 
 export class UtilityBillLambdaStack extends Stack {
@@ -75,6 +76,23 @@ export class UtilityBillLambdaStack extends Stack {
       deadLetterQueue: new Queue(this, "UtilityBillServiceSchedulerDLQ"), // Optional: add a dead letter queue
       retryAttempts: 2, // Optional: set the max number of retry attempts
     }));
+
+    // -- give lambda access to SSM
+    this.lambdaFunction.role?.attachInlinePolicy(
+      new Policy(this, "SSM Policy", {
+        statements: [
+          new PolicyStatement({
+            effect: Effect.ALLOW,
+            actions: [
+              "ssm:Describe*",
+              "ssm:Get*",
+              "ssm:List*"
+            ],
+            resources: ["*"]
+          }),
+        ],
+      }),
+    );
 
   }
 }
