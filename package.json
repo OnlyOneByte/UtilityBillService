@@ -1,14 +1,12 @@
 {
-  "name": "UtilityBillService",
+  "name": "utility-bill-service",
   "version": "0.1.0",
-  "bin": {
-    "UtilityBillService": "build/cdk/UtilityBillService.js"
-  },
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "clean": "rm -rf build/"
   },
   "devDependencies": {
     "@types/jest": "^29.5.1",
