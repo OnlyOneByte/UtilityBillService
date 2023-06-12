@@ -3,10 +3,12 @@ import { Construct } from 'constructs';
 import { Duration, Stack, StackProps } from 'aws-cdk-lib';
 import { execSync } from 'child_process';
 import { IFunction } from "aws-cdk-lib/aws-lambda";
-import lambda = require('aws-cdk-lib/aws-lambda');
-import { IRule, Rule, Schedule } from 'aws-cdk-lib/aws-events';
+import { Rule, Schedule } from 'aws-cdk-lib/aws-events';
 import { Queue } from 'aws-cdk-lib/aws-sqs';
 import { LambdaFunction } from 'aws-cdk-lib/aws-events-targets';
+// import { StringParameter } from 'aws-cdk-lib/aws-ssm';
+
+import lambda = require('aws-cdk-lib/aws-lambda');
 
 
 export class UtilityBillLambdaStack extends Stack {
@@ -48,7 +50,10 @@ export class UtilityBillLambdaStack extends Stack {
       }),
       memorySize: 1024,
       // functionName: 'UtilityBillLambda', // We do NOT specify a name so that replacements work.
-      timeout: Duration.seconds(300)
+      timeout: Duration.seconds(300),
+      // environment: {
+      //   "GOOGLE_CREDENTIALS_PARAMETER": StringParameter.valueFromLookup(this, "UtilityBillService-GoogleDriveServiceAccount")
+      // }
     });
 
 

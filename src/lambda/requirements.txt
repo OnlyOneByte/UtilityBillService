@@ -1,1 +1,5 @@
 python-string-utils
+boto3
+json
+google-api-python-client
+google-auth-oauthlib
